@@ -3,17 +3,25 @@ const fs = require("fs");
 const { promises: asyncFS } = fs;
 
 class Localize {
-  localeDirectory = ".";
+  localeDirectory;
   keysFilePath;
   locales;
   defaultLocale;
+  indents = 2;
   keysTemplate = null;
   localeFileTemplate = null;
 
-  constructor(localeDirectory, keysFilePath, locales = {}, defaultLocale) {
+  constructor(
+    localeDirectory = ".",
+    keysFilePath,
+    locales = {},
+    defaultLocale,
+    indents = 2
+  ) {
     this.localeDirectory = localeDirectory;
     this.locales = locales;
     this.keysFilePath = keysFilePath;
+    this.indents = indents;
     if (defaultLocale != null) {
       this.defaultLocale = defaultLocale;
     } else {
@@ -32,6 +40,10 @@ class Localize {
     this.localeFileTemplate = template;
   };
 
+  #addStringIndents = (content, level) => {
+    return `${new Array(this.indents * level).fill(" ").join("")}${content}`;
+  };
+
   #generateFileInput = (locale, returnKeysInput = false) => {
     const localeEntries = Object.entries(locale);
     let fileInput = "";
@@ -40,7 +52,8 @@ class Localize {
       const [key, translation] = localeEntries[index];
       fileInput += `"${key}" = "${translation}";\n`;
       if (returnKeysInput) {
-        keysTemplateInput += `case ${key}${
+        const translationCase = this.#addStringIndents(`case ${key}`, 4);
+        keysTemplateInput += `${translationCase}${
           index < localeEntries.length - 1 ? "\n" : ""
         }`;
       }
