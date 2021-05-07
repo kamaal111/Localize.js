@@ -38,7 +38,7 @@ class Localize {
     let keysTemplateInput = "";
     for (let index = 0; index < localeEntries.length; index++) {
       const [key, translation] = localeEntries[index];
-      fileInput += `"${key}" = "${translation}";`;
+      fileInput += `"${key}" = "${translation}";\n`;
       if (returnKeysInput) {
         keysTemplateInput += `case ${key}${
           index < localeEntries.length - 1 ? "\n" : ""
