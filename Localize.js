@@ -41,7 +41,9 @@ class Localize {
   };
 
   #addStringIndents = (content, level) => {
-    return `${new Array(this.indents * level).fill(" ").join("")}${content}`;
+    return `${new Array(this.indents * (level * 2))
+      .fill(" ")
+      .join("")}${content}`;
   };
 
   #generateFileInput = (locale, returnKeysInput = false) => {
@@ -52,7 +54,7 @@ class Localize {
       const [key, translation] = localeEntries[index];
       fileInput += `"${key}" = "${translation}";\n`;
       if (returnKeysInput) {
-        const translationCase = this.#addStringIndents(`case ${key}`, 4);
+        const translationCase = this.#addStringIndents(`case ${key}`, 2);
         keysTemplateInput += `${translationCase}${
           index < localeEntries.length - 1 ? "\n" : ""
         }`;
@@ -74,10 +76,8 @@ class Localize {
     }
     const locale = this.locales[key];
     const generateKeysInput = key === this.defaultLocale;
-    let {
-      fileInput: localizableFileInput,
-      keysTemplateInput,
-    } = this.#generateFileInput(locale, generateKeysInput);
+    let { fileInput: localizableFileInput, keysTemplateInput } =
+      this.#generateFileInput(locale, generateKeysInput);
     if (generateKeysInput) {
       if (this.keysTemplate != null) {
         keysTemplateInput = this.keysTemplate(keysTemplateInput);
