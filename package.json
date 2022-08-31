@@ -1,5 +1,5 @@
 {
-  "name": "localize",
+  "name": "@kamaal111/localize",
   "version": "0.1.0",
   "description": "",
   "main": "Localize.js",
@@ -11,9 +11,12 @@
     "url": "git+https://github.com/kamaal111/Localize.js.git"
   },
   "author": "Kamaal",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/kamaal111/Localize.js/issues"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
   },
   "homepage": "https://github.com/kamaal111/Localize.js#readme"
 }
