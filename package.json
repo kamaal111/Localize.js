@@ -1,0 +1,19 @@
+{
+  "name": "localize",
+  "version": "0.1.0",
+  "description": "",
+  "main": "Localize.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kamaal111/Localize.js.git"
+  },
+  "author": "Kamaal",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kamaal111/Localize.js/issues"
+  },
+  "homepage": "https://github.com/kamaal111/Localize.js#readme"
+}
